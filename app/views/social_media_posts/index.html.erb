@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Social media posts</h1>
+
+<%= form_tag social_media_posts_path, method: :get do %>
+  <label for="start_date">Start Date:</label>
+  <%= text_field_tag :start_date, params[:start_date] %>
+
+  <label for="end_date">End Date:</label>
+  <%= text_field_tag :end_date, params[:end_date] %>
+
+  <%= submit_tag "Filter" %>
+<% end %>
+
+<div id="social_media_posts">
+  <% @social_media_posts.each do |social_media_post| %>
+    <%= render social_media_post %>
+    <p>
+      <%= link_to "Show this social media post", social_media_post %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New social media post", new_social_media_post_path %>

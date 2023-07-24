@@ -1,0 +1,27 @@
+<%= form_with(model: social_media_post) do |form| %>
+  <% if social_media_post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(social_media_post.errors.count, "error") %> prohibited this social_media_post from being saved:</h2>
+
+      <ul>
+        <% social_media_post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :postable_id, style: "display: block" %>
+    <%= form.text_field :postable_id %>
+  </div>
+
+  <div>
+    <%= form.label :posted_at, style: "display: block" %>
+    <%= form.datetime_field :posted_at %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
