@@ -15,6 +15,9 @@
   <label for="custom_list">Custom List:</label>
   <%= select_tag :custom_list_id, options_from_collection_for_select(CustomList.all, :id, :name, params[:custom_list_id]), include_blank: true %>
 
+  <label for="identifiable_type">Table:</label>
+  <%= select_tag :identifiable_type, options_for_select(['CustomListPerson', 'FederalLegislator'], params[:identifiable_type]), include_blank: true %>
+
 
   <%= submit_tag "Filter" %>
 <% end %>
