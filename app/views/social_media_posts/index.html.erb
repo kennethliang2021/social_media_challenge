@@ -9,6 +9,13 @@
   <label for="end_date">End Date:</label>
   <%= date_field_tag :end_date, params[:end_date] %>
 
+  <label for="social_media_type">Social Media Type:</label>
+  <%= select_tag :social_media_type, options_from_collection_for_select(SocialMediaType.all, :name, :name, params[:social_media_type]), include_blank: true %>
+
+  <label for="custom_list">Custom List:</label>
+  <%= select_tag :custom_list_id, options_from_collection_for_select(CustomList.all, :id, :name, params[:custom_list_id]), include_blank: true %>
+
+
   <%= submit_tag "Filter" %>
 <% end %>
 

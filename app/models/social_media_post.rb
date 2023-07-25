@@ -10,4 +10,17 @@ class SocialMediaPost < ApplicationRecord
       all
     end
   }
+
+  scope :by_social_media_type, ->(social_media_type) {
+    if social_media_type.present?
+      joins(social_media_people_identifier: :social_media_type).where("social_media_types.name ilike ?", social_media_type)
+    else
+      joins(social_media_people_identifier: :social_media_type)
+    end
+  }
+
+
+  scope :by_custom_list, ->(custom_list_id) {
+    where("social_media_people_identifiers.identifiable_id = ?", custom_list_id)
+  }
 end
