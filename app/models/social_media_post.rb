@@ -20,10 +20,18 @@ class SocialMediaPost < ApplicationRecord
   }
 
   scope :by_custom_list, ->(custom_list_id) {
-    where("social_media_people_identifiers.identifiable_id = ?", custom_list_id) if custom_list_id.present?
+    if custom_list_id.present?
+      joins(:social_media_people_identifier).where("social_media_people_identifiers.identifiable_id = ?", custom_list_id)
+    else
+      joins(:social_media_people_identifier)
+    end
   }
 
   scope :by_identifiable_type, ->(identifiable_type) {
-    where("social_media_people_identifiers.identifiable_type = ?", identifiable_type) if identifiable_type.present?
+    if identifiable_type.present?
+      joins(:social_media_people_identifier).where("social_media_people_identifiers.identifiable_type = ?", identifiable_type)
+    else
+      joins(:social_media_people_identifier)
+    end
   }
 end
