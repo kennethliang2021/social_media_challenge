@@ -3,7 +3,9 @@ class SocialMediaPostsController < ApplicationController
 
   # GET /social_media_posts or /social_media_posts.json
   def index
-    @social_media_posts = SocialMediaPost.all
+    @start_date = params[:start_date]
+    @end_date = params[:end_date]
+    @social_media_posts = SocialMediaPost.between_dates(@start_date, @end_date)
   end
 
   # GET /social_media_posts/1 or /social_media_posts/1.json
